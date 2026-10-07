@@ -336,8 +336,11 @@
       let step3Done = localStorage.getItem('prompts_step3') === 'true';
 
       function getShareUrl() {
-        return `${window.location.origin}${window.location.pathname}?ref=${refCode}`;
-      }
+  const baseUrl = window.location.origin;
+  const refCode = localStorage.getItem('prompts_ref_code') || '';
+  return `${baseUrl}/?ref=${refCode}&v=3`;
+}
+
 
       function showToast(msg) {
         const toast = document.getElementById('toast-container');
