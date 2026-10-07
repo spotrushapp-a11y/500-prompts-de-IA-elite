@@ -1,0 +1,6 @@
+{
+  "name": "Remix 500 Prompts IA",
+  "description": "Domine as Melhores IAs com 500 Prompts de Elite e Cashback via Pix.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
