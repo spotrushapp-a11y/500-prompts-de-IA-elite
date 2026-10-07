@@ -771,7 +771,16 @@ async function enviarLeadParaN8N(nome, email, cpf) {
   } catch (erro) {
     console.error('Erro de rede:', erro);
   }
-}
+} // Ouve o clique no botão de desbloqueio para disparar o registo do lead
+document.getElementById('btn-unlock-bonus').addEventListener('click', function() {
+  // Nota: Pode substituir estes valores estáticos pelos IDs reais dos inputs de texto do seu formulário (ex: document.getElementById('inputNome').value)
+  const nome = "Lead 500 Prompts";
+  const email = "lead@exemplo.com";
+  const cpf = "000.000.000-00";
+
+  enviarLeadParaN8N(nome, email, cpf);
+});
+
 
     </script>
   </body>
