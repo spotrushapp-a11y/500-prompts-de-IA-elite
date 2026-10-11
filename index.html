@@ -1,278 +1,533 @@
 <!doctype html>
 <html lang="pt-PT">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#060a07">
-    <title>Remix 500 Prompts IA</title>
-    <meta name="description" content="Domine as Melhores IAs com 500 Prompts de Elite e Cashback via Pix.">
-    <meta property="og:title" content="🔥 Achado brutal de Inteligência Artificial!">
-    <meta property="og:description" content="Garanta acesso completo a um banco de 500 Prompts Profissionais por apenas R$ 5,00. Ganhe cashback no Pix!">
-    <meta property="og:image" content="https://500-prompts-de-ia-elite.vercel.app/banner.jpg">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      :root { --bg-dark: #050806; --emerald-primary: #10b981; --amber-accent: #f59e0b; }
-      html { scroll-behavior: smooth; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background-color: var(--bg-dark); color: #edf2eb; }
-      h1, h2, h3, .font-syne { font-family: 'Syne', sans-serif; }
-      .font-mono-code { font-family: 'JetBrains Mono', monospace; }
-    </style>
-  </head>
-  <body class="bg-[#050806] text-[#edf2eb] antialiased min-h-screen flex flex-col pb-28">
-    <div id="root" class="flex-1 flex flex-col">
-      <header class="sticky top-0 z-40 border-b border-emerald-950/80 bg-[#050806]/90 backdrop-blur-md">
-        <div class="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between gap-3">
-          <div class="flex items-center gap-2.5">
-            <div class="h-9 w-9 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-syne font-extrabold">✨</div>
-            <span class="font-syne font-extrabold text-white text-sm tracking-tight">500 Prompts <span class="text-emerald-400">IA</span></span>
-          </div>
-          <div class="flex items-center gap-2">
-            <button id="btn-open-missions" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 text-xs font-semibold text-amber-300">
-              <span>⏱️</span><span id="missions-counter-top">Missões: 0/3</span>
-            </button>
-            <button id="btn-open-pix-top" class="px-3 py-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-xs font-semibold text-emerald-300">
-              🎁 <span id="cashback-top-label">Cashback: R$ 0</span>
-            </button>
-          </div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#060a07">
+<title>Remix 500 Prompts IA</title>
+<meta property="og:title" content="🔥 Achado brutal de Inteligência Artificial!">
+<meta property="og:description" content="500 Prompts Profissionais por R$ 5,00. Ganhe cashback no Pix!">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html { scroll-behavior: smooth; font-family: 'Plus Jakarta Sans', sans-serif; background: #050806; color: #edf2eb; }
+h1,h2,h3,.font-syne { font-family: 'Syne', sans-serif; }
+.font-mono-code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-[#050806] text-[#edf2eb] min-h-screen flex flex-col pb-28">
+<div id="root" class="flex-1 flex flex-col">
+
+<header class="sticky top-0 z-40 border-b border-emerald-950/80 bg-[#050806]/90 backdrop-blur-md">
+<div class="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<div class="h-9 w-9 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-syne font-extrabold">✨</div>
+<span class="font-syne font-extrabold text-white text-sm">500 Prompts <span class="text-emerald-400">IA</span></span>
+</div>
+<div class="flex items-center gap-2">
+<button id="btn-open-missions" class="px-3 py-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 text-xs font-semibold text-amber-300">⏱️ <span id="missions-counter-top">Missões: 0/3</span></button>
+<button id="btn-open-pix-top" class="px-3 py-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-xs font-semibold text-emerald-300">🎁 <span id="cashback-top-label">Cashback: R$ 0</span></button>
+</div>
+</div>
+</header>
+
+<main class="flex-1 mx-auto max-w-4xl w-full px-4 py-8 space-y-10">
+
+<section class="space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">✨ JORNADA REAL DE MISSÕES & BÔNUS SECRETO</div>
+<h1 class="font-syne text-3xl sm:text-5xl font-extrabold text-white">Domine as Melhores IAs com <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-300">500 Prompts de Elite</span></h1>
+<p class="text-sm text-emerald-100/70">Aumente sua produtividade. Convide 2 amigos e receba <strong>R$ 2,00 no Pix</strong>.</p>
+</section>
+
+<section id="painel-missoes" class="rounded-2xl border border-emerald-900/70 bg-[#09100a] p-6 space-y-6">
+<h2 class="font-syne text-2xl font-bold text-white">Painel de Missões & Presente Secreto</h2>
+
+<div class="p-4 rounded-xl border border-emerald-900/60 bg-[#050806] flex items-center justify-between">
+<div>
+<span class="text-xs text-emerald-400/80 block">Etapas Validadas</span>
+<strong class="font-syne text-2xl text-amber-400" id="steps-completed-count">0 / 3</strong>
+</div>
+<div class="px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-bold" id="steps-percent-badge">0%</div>
+</div>
+
+<div class="p-5 rounded-xl border border-emerald-900/70 bg-[#060c07] space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-emerald-400 uppercase">ETAPA 01</span>
+<span id="badge-step-1" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Pendente</span>
+</div>
+<h3 class="font-syne text-base font-bold text-white">🔗 Compartilhamento 1</h3>
+<p class="text-xs text-emerald-200/70">Envie o link exclusivo ao 1º amigo real.</p>
+<button id="btn-step-1" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-950 font-bold text-xs">Gerar e Enviar Link →</button>
+</div>
+
+<div class="p-5 rounded-xl border border-emerald-900/70 bg-[#060c07] space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-emerald-400 uppercase">ETAPA 02</span>
+<span id="badge-step-2" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Pendente</span>
+</div>
+<h3 class="font-syne text-base font-bold text-white">🔗 Compartilhamento 2</h3>
+<p class="text-xs text-emerald-200/70">2º amigo confirmado para bater a meta.</p>
+<button id="btn-step-2" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-950 font-bold text-xs">Convidar 2º Amigo →</button>
+</div>
+
+<div class="p-5 rounded-xl border border-amber-500/40 bg-[#060c07] space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-amber-400 uppercase">ETAPA 03</span>
+<span id="badge-step-3" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Obrigatório</span>
+</div>
+<h3 class="font-syne text-base font-bold text-white">🎁 Bônus Secreto & Chave Pix</h3>
+<p class="text-xs text-emerald-200/70">Cadastre seu e-mail para desbloquear o presente misterioso.</p>
+<div class="pt-2 flex flex-col sm:flex-row gap-2">
+<button id="btn-unlock-bonus" class="flex-1 py-2.5 px-4 rounded-xl border border-amber-500/50 bg-amber-500/10 text-amber-300 font-bold text-xs">Presente Secreto 🔒</button>
+<button id="btn-insert-pix" class="flex-1 py-2.5 px-4 rounded-xl border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 font-bold text-xs">Inserir Pix</button>
+</div>
+</div>
+</section>
+
+<!-- SECÇÃO DOS 500 PROMPTS (RESTAURADA) -->
+<section id="acervo-prompts" class="rounded-2xl border border-emerald-900/70 bg-[#09100a] p-6 space-y-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-syne text-lg">📚</div>
+<div>
+<h2 class="font-syne text-2xl font-bold text-white">O Acervo dos 500 Prompts</h2>
+<p class="text-xs text-emerald-300/70">Categorias completas incluídas no seu acesso.</p>
+</div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 rounded-xl border border-emerald-900/60 bg-[#050806]"><span class="text-emerald-400 font-bold text-xs uppercase">🚀 Marketing & Vendas</span><p class="text-xs text-emerald-100/70 mt-1">Copys de alta conversão, e-mail marketing e funnels.</p></div>
+<div class="p-4 rounded-xl border border-emerald-900/60 bg-[#050806]"><span class="text-emerald-400 font-bold text-xs uppercase">🎨 Criação de Imagens</span><p class="text-xs text-emerald-100/70 mt-1">Midjourney, Leonardo AI e SeaArt visuais criativos.</p></div>
+<div class="p-4 rounded-xl border border-emerald-900/60 bg-[#050806]"><span class="text-emerald-400 font-bold text-xs uppercase">💻 Programação & Tech</span><p class="text-xs text-emerald-100/70 mt-1">HTML, JS, Python e Supabase.</p></div>
+<div class="p-4 rounded-xl border border-emerald-900/60 bg-[#050806]"><span class="text-emerald-400 font-bold text-xs uppercase">📊 Gestão & Estratégia</span><p class="text-xs text-emerald-100/70 mt-1">Organização de negócios digitais e projetos.</p></div>
+</div>
+
+<div class="pt-4 border-t border-emerald-950 space-y-4">
+<div class="flex flex-col sm:flex-row gap-3 justify-between">
+<div class="flex flex-wrap gap-1.5" id="category-filters">
+<button data-cat="all" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950">Todos (500)</button>
+<button data-cat="Marketing & Vendas" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#050806] text-emerald-300 border border-emerald-900/60">🚀 Marketing (125)</button>
+<button data-cat="Criação de Imagens" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#050806] text-emerald-300 border border-emerald-900/60">🎨 Imagens (125)</button>
+<button data-cat="Programação & Tech" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#050806] text-emerald-300 border border-emerald-900/60">💻 Tech (125)</button>
+<button data-cat="Gestão & Estratégia" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#050806] text-emerald-300 border border-emerald-900/60">📊 Gestão (125)</button>
+</div>
+<input id="prompt-search" type="text" placeholder="Pesquisar..." class="w-full sm:w-60 rounded-xl border border-emerald-900/80 bg-[#050806] px-3.5 py-2 text-xs text-emerald-100" />
+</div>
+
+<div id="prompts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[460px] overflow-y-auto pr-1"></div>
+
+<div class="flex items-center justify-between pt-2 text-xs text-emerald-300/70">
+<span id="prompts-showing-text">Exibindo prompts</span>
+<button id="btn-load-more-prompts" class="px-4 py-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 font-bold text-xs">Carregar Mais ↓</button>
+</div>
+</div>
+</section>
+
+<section id="secao-indicacao" class="rounded-2xl border border-emerald-900/70 bg-[#09100a] p-6 space-y-5">
+<h2 class="font-syne text-xl font-bold text-white">🎁 Programa de Indicação & Cashback</h2>
+<div class="p-4 rounded-xl border border-emerald-900/60 bg-[#050806]">
+<span class="text-xs text-emerald-400/80 block">Status do Cashback</span>
+<strong id="cashback-status-amount" class="font-syne text-2xl text-amber-400">R$ 0,00</strong>
+</div>
+<div class="flex justify-between items-center text-xs text-emerald-300">
+<span>Indicações Confirmadas:</span>
+<span id="referrals-confirmed-label" class="font-bold text-amber-400 text-sm">0 / 2 amigos (0%)</span>
+</div>
+<p id="referrals-remaining-msg" class="text-xs text-amber-300/80">⏱️ Falta 2 amigos para liberar o Pix.</p>
+<div class="space-y-2">
+<label class="block text-xs font-bold text-emerald-400 uppercase">SEU LINK EXCLUSIVO:</label>
+<div class="flex gap-2">
+<input id="ref-link-input" type="text" readonly class="flex-1 rounded-xl border border-emerald-900/80 bg-[#050806] px-4 py-2.5 text-xs font-mono-code text-emerald-300" />
+<button id="btn-copy-main" class="px-4 py-2.5 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 font-bold text-xs">Copiar</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-2">
+<button id="btn-whatsapp" class="py-2.5 rounded-xl border border-emerald-800/70 bg-[#06140a] text-emerald-200 font-semibold text-xs">💬 WhatsApp</button>
+<button id="btn-telegram" class="py-2.5 rounded-xl border border-emerald-800/70 bg-[#06140a] text-emerald-200 font-semibold text-xs">✈️ Telegram</button>
+<button id="btn-share-generic" class="py-2.5 rounded-xl border border-emerald-800/70 bg-[#06140a] text-emerald-200 font-semibold text-xs">🔗 Compartilhar</button>
+<button id="btn-withdraw" class="py-2.5 rounded-xl border border-emerald-800/70 bg-[#06140a] text-emerald-200 font-semibold text-xs">🎁 Sacar R$ 2,00</button>
+</div>
+</section>
+
+</main>
+
+<div class="fixed bottom-0 left-0 right-0 z-40 p-3 bg-[#050806]/95 border-t border-emerald-900/80">
+<button id="btn-floating-share" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-400 to-emerald-300 text-slate-950 font-extrabold text-xs">
+<span id="floating-btn-label">🔗 CLIQUE AQUI PARA COMPARTILHAR (Etapa 1)</span>
+</button>
+</div>
+
+<div id="modal-overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
+<div class="w-full max-w-md rounded-2xl border border-emerald-800/80 bg-[#09120b] p-6 space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-syne text-lg font-bold text-white">🎁 Bônus Secreto & PIX</h3>
+<button id="btn-close-modal" class="text-emerald-400 text-sm font-bold px-2 py-1">✕</button>
+</div>
+<p class="text-xs text-emerald-200/70">Preencha seus dados para salvar a chave Pix e liberar o presente.</p>
+<div class="space-y-3">
+<div>
+<label class="block text-[11px] font-bold text-emerald-400 uppercase mb-1">Seu E-mail</label>
+<input id="input-bonus-email" type="email" placeholder="seuemail@exemplo.com" class="w-full rounded-xl border border-emerald-900 bg-[#050806] px-3.5 py-2.5 text-xs text-white" />
+</div>
+<div>
+<label class="block text-[11px] font-bold text-emerald-400 uppercase mb-1">Seu WhatsApp (com DDD)</label>
+<input id="input-whatsapp" type="tel" placeholder="Ex: 11999998888" class="w-full rounded-xl border border-emerald-900 bg-[#050806] px-3.5 py-2.5 text-xs text-white" />
+</div>
+<div>
+<label class="block text-[11px] font-bold text-amber-400 uppercase mb-1">Sua Chave Pix</label>
+<input id="input-pix-key" type="text" placeholder="Digite sua chave Pix..." class="w-full rounded-xl border border-emerald-900 bg-[#050806] px-3.5 py-2.5 text-xs text-white" />
+</div>
+</div>
+<button id="btn-save-modal" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-950 font-extrabold text-xs">Confirmar e Salvar Dados ✓</button>
+</div>
+</div>
+
+<div id="toast-container" class="fixed bottom-20 right-5 z-50 hidden rounded-xl border border-emerald-500/40 bg-[#09140d] px-4 py-3 text-xs font-semibold text-emerald-200"></div>
+</div>
+
+<script>
+let refCode = localStorage.getItem('prompts_ref_code') || ('REF_' + Math.random().toString(36).slice(2, 8).toUpperCase());
+localStorage.setItem('prompts_ref_code', refCode);
+let step1Done = localStorage.getItem('prompts_step1') === 'true';
+let step2Done = localStorage.getItem('prompts_step2') === 'true';
+let step3Done = localStorage.getItem('prompts_step3') === 'true';
+
+function getShareUrl() { return `${window.location.origin}${window.location.pathname}?ref=${refCode}&v=3`; }
+
+function showToast(msg) {
+  const t = document.getElementById('toast-container');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.remove('hidden');
+  clearTimeout(window.__t);
+  window.__t = setTimeout(() => t.classList.add('hidden'), 3500);
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else fallbackCopy(text);
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function updateUI() {
+  const input = document.getElementById('ref-link-input');
+  if (input) input.value = getShareUrl();
+  const completedCount = (step1Done?1:0)+(step2Done?1:0)+(step3Done?1:0);
+  const referralsCount = (step1Done?1:0)+(step2Done?1:0);
+  const percent = Math.round((completedCount/3)*100);
+  const topMissions = document.getElementById('missions-counter-top');
+  if (topMissions) topMissions.textContent = `Missões: ${completedCount}/3`;
+  const stepsCountEl = document.getElementById('steps-completed-count');
+  if (stepsCountEl) stepsCountEl.textContent = `${completedCount} / 3`;
+  const stepsBadgeEl = document.getElementById('steps-percent-badge');
+  if (stepsBadgeEl) stepsBadgeEl.textContent = `${percent}%`;
+  const b1 = document.getElementById('badge-step-1');
+  if (b1 && step1Done) { b1.textContent = 'Concluído ✓'; b1.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'; }
+  const b2 = document.getElementById('badge-step-2');
+  if (b2 && step2Done) { b2.textContent = 'Concluído ✓'; b2.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'; }
+  const b3 = document.getElementById('badge-step-3');
+  if (b3 && step3Done) { b3.textContent = 'Ativado ✓'; b3.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'; }
+  const refLabel = document.getElementById('referrals-confirmed-label');
+  if (refLabel) refLabel.textContent = `${referralsCount} / 2 amigos (${Math.round((referralsCount/2)*100)}%)`;
+  const remMsg = document.getElementById('referrals-remaining-msg');
+  if (remMsg) {
+    const rem = Math.max(0, 2 - referralsCount);
+    remMsg.textContent = rem === 0 ? '✅ Meta atingida! Saldo R$ 2,00 pronto para resgate.' : `⏱️ Falta ${rem} amigo(s) para liberar o Pix.`;
+  }
+  const cbStatus = document.getElementById('cashback-status-amount');
+  if (cbStatus) cbStatus.textContent = completedCount === 3 ? 'R$ 2,00' : 'R$ 0,00';
+  const cbTop = document.getElementById('cashback-top-label');
+  if (cbTop) cbTop.textContent = completedCount === 3 ? 'Cashback: R$ 2,00' : 'Cashback: R$ 0';
+  const floatLabel = document.getElementById('floating-btn-label');
+  if (floatLabel) {
+    if (!step1Done) floatLabel.textContent = '🔗 CLIQUE AQUI PARA COMPARTILHAR (Etapa 1)';
+    else if (!step2Done) floatLabel.textContent = '🔗 COMPARTILHAR COM 2º AMIGO (Etapa 2)';
+    else if (!step3Done) floatLabel.textContent = '🎁 DESBLOQUEAR BÔNUS & CHAVE PIX (Etapa 3)';
+    else floatLabel.textContent = '✅ MISSÕES CONCLUÍDAS! SACAR R$ 2,00';
+  }
+}
+
+// Gerador dos 500 prompts
+const promptTemplates = {
+  'Marketing & Vendas': [
+    { title: 'Copy VSL Alta Conversão', body: 'Atue como Copywriter Sênior. Crie roteiro de VSL de 5min para vender [PRODUTO] com framework AIDA.' },
+    { title: 'Sequência de 7 E-mails', body: 'Crie sequência de 7 e-mails para lançamento de [PRODUTO] com linhas de assunto de alta abertura.' },
+    { title: 'Script de Fechamento WhatsApp', body: 'Funil de atendimento humano no WhatsApp para converter leads de [NICHO] que pararam no boleto.' },
+    { title: 'Anúncio Meta Ads', body: 'Escreva 5 criativos em texto para Facebook/Instagram Ads focados em CTR alto para [PÚBLICO].' },
+    { title: 'Página de Vendas', body: 'Estruture headline, bullets, garantia e FAQ para Landing Page de [OFERTA].' }
+  ],
+  'Criação de Imagens': [
+    { title: 'Retrato Cinematográfico 8K', body: '/imagine prompt: cinematic portrait of [SUJEITO], rim lighting, 85mm lens, kodak portra 400 --ar 4:5 --v 6.0' },
+    { title: 'Produto Comercial de Luxo', body: '/imagine prompt: commercial photography of [PRODUTO] on obsidian podium, emerald neon, 8k --ar 1:1' },
+    { title: 'Mascote 3D Pixar', body: '/imagine prompt: cute 3d mascot of [PERSONAGEM], Pixar style, soft subsurface scattering, 8k' },
+    { title: 'UI/UX Cyberpunk', body: '/imagine prompt: dark mode SaaS dashboard, emerald neon, glassmorphism, Dribbble trending --ar 16:9' },
+    { title: 'Arquitetura Minimalista', body: '/imagine prompt: brutalist concrete villa in tropical forest, dusk, infinity pool, ArchDaily --ar 16:9' }
+  ],
+  'Programação & Tech': [
+    { title: 'Landing Page Single-File', body: 'Atue como Front-end Sênior. Crie Landing Page em HTML5 + Tailwind + JS em arquivo único, performance 100 no Lighthouse.' },
+    { title: 'Schema SQL + RLS Supabase', body: 'Crie schema SQL completo para PostgreSQL de [SISTEMA] com índices e políticas RLS.' },
+    { title: 'Debug de Código Assíncrono', body: 'Analise o código abaixo, identifique race conditions e reescreva aplicando Clean Code.' },
+    { title: 'Webhook Pix Serverless', body: 'Desenvolva Edge Function em Node.js para validar webhook Pix e disparar e-mail.' },
+    { title: 'Scraper Python', body: 'Script Python com BeautifulSoup/Playwright para extrair dados de [FONTE] e exportar JSON.' }
+  ],
+  'Gestão & Estratégia': [
+    { title: 'OKRs Trimestrais', body: 'Estruture OKRs para 90 dias de empresa em [NICHO] que quer escalar 3x.' },
+    { title: 'Calendário 30 Dias Reels', body: 'Gere matriz de 30 dias de conteúdo para Reels/TikTok no nicho [NICHO] com ganchos virais.' },
+    { title: 'SOP Empresarial', body: 'Crie SOP passo a passo para delegar função de [FUNÇÃO] com checklists e métricas.' },
+    { title: 'Análise SWOT', body: 'Análise competitiva completa de [PRODUTO] identificando oportunidades e posicionamento único.' },
+    { title: 'Produto High-Ticket', body: 'Desenhe jornada, módulos e precificação de mentoria High-Ticket (R$ 2k a R$ 10k).' }
+  ]
+};
+
+const all500Prompts = [];
+const categories = ['Marketing & Vendas', 'Criação de Imagens', 'Programação & Tech', 'Gestão & Estratégia'];
+const contexts = ['para Infoprodutos','para E-commerce','para Negócios Locais','para SaaS','para Afiliados','Nível Especialista','Otimizado 2025','Foco em ROI','para Iniciantes','Escala Automática'];
+let idCounter = 1;
+categories.forEach((cat) => {
+  const templates = promptTemplates[cat];
+  for (let i = 0; i < 125; i++) {
+    const tpl = templates[i % templates.length];
+    const ctx = contexts[Math.floor(i / templates.length) % contexts.length];
+    const numStr = String(idCounter).padStart(3, '0');
+    all500Prompts.push({ id: idCounter, code: `#${numStr}`, category: cat, title: `${tpl.title} — ${ctx}`, prompt: `${tpl.body} (${ctx})` });
+    idCounter++;
+  }
+});
+
+let currentCategory = 'all';
+let currentSearch = '';
+let visibleCount = 12;
+
+function renderPrompts() {
+  const grid = document.getElementById('prompts-grid');
+  const showingText = document.getElementById('prompts-showing-text');
+  const loadMoreBtn = document.getElementById('btn-load-more-prompts');
+  if (!grid) return;
+  const filtered = all500Prompts.filter((item) => {
+    const matchCat = currentCategory === 'all' || item.category === currentCategory;
+    const q = currentSearch.trim().toLowerCase();
+    const matchSearch = !q || item.title.toLowerCase().includes(q) || item.prompt.toLowerCase().includes(q) || item.code.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+  const slice = filtered.slice(0, visibleCount);
+  grid.innerHTML = slice.map((item) => `
+    <div class="p-3.5 rounded-xl border border-emerald-900/60 bg-[#050806] flex flex-col gap-2.5">
+      <div>
+        <div class="flex items-center justify-between gap-2 mb-1.5">
+          <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono-code text-[10px] font-bold">${item.code}</span>
+          <span class="text-[10px] text-emerald-300/60 font-semibold">${item.category}</span>
         </div>
-      </header>
-
-      <main class="flex-1 mx-auto max-w-4xl w-full px-4 py-8 space-y-10">
-        <section class="space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
-            ✨ JORNADA REAL DE MISSÕES & BÔNUS SECRETO
-          </div>
-          <h1 class="font-syne text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Domine as Melhores IAs com <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-300">500 Prompts de Elite</span>
-          </h1>
-          <p class="text-sm text-emerald-100/70 leading-relaxed">
-            Aumente sua produtividade em Marketing, Copywriting, Imagens, Programação e Gestão. Convide 2 amigos e receba <strong>R$ 2,00 direto na sua chave Pix</strong>.
-          </p>
-        </section>
-
-        <section id="painel-missoes" class="rounded-2xl border border-emerald-900/70 bg-[#09100a] p-6 space-y-6">
-          <h2 class="font-syne text-2xl font-bold text-white">Painel de Missões & Presente Secreto</h2>
-
-          <div class="p-5 rounded-xl border border-emerald-900/70 bg-[#060c07] space-y-3">
-            <span class="text-xs font-bold text-emerald-400 uppercase">ETAPA 01</span>
-            <h3 class="font-syne text-base font-bold text-white">🔗 Compartilhamento 1</h3>
-            <button id="btn-step-1" class="w-full px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-950 font-bold text-xs">Gerar e Enviar Link →</button>
-          </div>
-
-          <div class="p-5 rounded-xl border border-emerald-900/70 bg-[#060c07] space-y-3">
-            <span class="text-xs font-bold text-emerald-400 uppercase">ETAPA 02</span>
-            <h3 class="font-syne text-base font-bold text-white">🔗 Compartilhamento 2</h3>
-            <button id="btn-step-2" class="w-full px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-950 font-bold text-xs">Convidar 2º Amigo →</button>
-          </div>
-
-          <div class="p-5 rounded-xl border border-amber-500/40 bg-[#060c07] space-y-3">
-            <span class="text-xs font-bold text-amber-400 uppercase">ETAPA 03 - Obrigatório</span>
-            <h3 class="font-syne text-base font-bold text-white">🎁 Bônus Secreto & Chave Pix</h3>
-            <p class="text-xs text-emerald-200/70">Cadastre seu e-mail para desbloquear o presente misterioso.</p>
-            <div class="pt-2 flex flex-col sm:flex-row gap-2">
-              <button id="btn-unlock-bonus" class="flex-1 py-2.5 px-4 rounded-xl border border-amber-500/50 bg-amber-500/10 text-amber-300 font-bold text-xs">Presente Secreto 🔒</button>
-              <button id="btn-insert-pix" class="flex-1 py-2.5 px-4 rounded-xl border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 font-bold text-xs">Inserir Pix</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="rounded-2xl border border-emerald-900/70 bg-[#09100a] p-6 space-y-5">
-          <h2 class="font-syne text-xl font-bold text-white">🎁 Programa de Indicação & Cashback</h2>
-          <div class="p-4 rounded-xl border border-emerald-900/60 bg-[#050806]">
-            <span class="text-xs text-emerald-400/80 block">Status do Cashback</span>
-            <strong id="cashback-status-amount" class="font-syne text-2xl text-amber-400">R$ 0,00</strong>
-          </div>
-          <div class="space-y-2">
-            <label class="block text-xs font-bold text-emerald-400 uppercase">SEU LINK EXCLUSIVO:</label>
-            <div class="flex gap-2">
-              <input id="ref-link-input" type="text" readonly class="flex-1 rounded-xl border border-emerald-900/80 bg-[#050806] px-4 py-2.5 text-xs text-emerald-300" />
-              <button id="btn-copy-main" class="px-4 py-2.5 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 font-bold text-xs">Copiar</button>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-2 pt-2">
-            <button id="btn-whatsapp" class="py-2.5 rounded-xl border border-emerald-800/70 bg-[#06140a] text-emerald-200 font-semibold text-xs">💬 WhatsApp</button>
-            <button id="btn-telegram" class="py-2.5 rounded-xl border border-emerald-800/70 bg-[#06140a] text-emerald-200 font-semibold text-xs">✈️ Telegram</button>
-          </div>
-        </section>
-      </main>
-
-      <div class="fixed bottom-0 left-0 right-0 z-40 p-3 bg-[#050806]/95 border-t border-emerald-900/80">
-        <button id="btn-floating-share" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-400 to-emerald-300 text-slate-950 font-extrabold text-xs">
-          <span id="floating-btn-label">🔗 CLIQUE AQUI PARA COMPARTILHAR (Etapa 1)</span>
-        </button>
+        <h4 class="font-syne text-xs font-bold text-white mb-1">${item.title}</h4>
+        <p class="text-[11px] text-emerald-100/70 font-mono-code leading-relaxed bg-[#09120b] p-2.5 rounded-lg border border-emerald-950">${item.prompt}</p>
       </div>
-
-      <!-- MODAL COM CAMPO WHATSAPP -->
-      <div id="modal-overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-        <div class="w-full max-w-md rounded-2xl border border-emerald-800/80 bg-[#09120b] p-6 space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-syne text-lg font-bold text-white">🎁 Bônus Secreto & PIX</h3>
-            <button id="btn-close-modal" class="text-emerald-400 text-sm font-bold px-2 py-1">✕</button>
-          </div>
-          <p class="text-xs text-emerald-200/70">Preencha seus dados para salvar a chave Pix de R$ 2,00 e liberar o Presente Misterioso.</p>
-          <div class="space-y-3">
-            <div>
-              <label class="block text-[11px] font-bold text-emerald-400 uppercase mb-1">Seu Melhor E-mail</label>
-              <input id="input-bonus-email" type="email" placeholder="seuemail@exemplo.com" class="w-full rounded-xl border border-emerald-900 bg-[#050806] px-3.5 py-2.5 text-xs text-white" />
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-emerald-400 uppercase mb-1">Seu WhatsApp (DDD + Número)</label>
-              <input id="input-whatsapp" type="tel" placeholder="Ex: 11999998888" class="w-full rounded-xl border border-emerald-900 bg-[#050806] px-3.5 py-2.5 text-xs text-white" />
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-amber-400 uppercase mb-1">Sua Chave Pix</label>
-              <input id="input-pix-key" type="text" placeholder="Digite sua chave Pix..." class="w-full rounded-xl border border-emerald-900 bg-[#050806] px-3.5 py-2.5 text-xs text-white" />
-            </div>
-          </div>
-          <button id="btn-save-modal" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-950 font-extrabold text-xs">
-            Confirmar e Salvar Dados ✓
-          </button>
-        </div>
-      </div>
-
-      <div id="toast-container" class="fixed bottom-20 right-5 z-50 hidden rounded-xl border border-emerald-500/40 bg-[#09140d] px-4 py-3 text-xs font-semibold text-emerald-200"></div>
+      <button data-prompt-id="${item.id}" class="btn-copy-prompt w-full py-1.5 px-3 rounded-lg border border-emerald-800/70 bg-emerald-950/40 text-emerald-300 text-[11px] font-bold">📋 Copiar ${item.code}</button>
     </div>
+  `).join('');
+  if (showingText) showingText.textContent = `Exibindo ${slice.length} de ${filtered.length} prompts`;
+  if (loadMoreBtn) {
+    if (slice.length >= filtered.length) loadMoreBtn.classList.add('hidden');
+    else loadMoreBtn.classList.remove('hidden');
+  }
+}
 
-    <script>
-      let refCode = localStorage.getItem('prompts_ref_code') || ('REF_' + Math.random().toString(36).slice(2, 8).toUpperCase());
-      localStorage.setItem('prompts_ref_code', refCode);
+function openModal() {
+  const modal = document.getElementById('modal-overlay');
+  if (!modal) return;
+  if (document.getElementById('input-bonus-email')) document.getElementById('input-bonus-email').value = localStorage.getItem('prompts_bonus_email') || '';
+  if (document.getElementById('input-pix-key')) document.getElementById('input-pix-key').value = localStorage.getItem('prompts_pix_key') || '';
+  if (document.getElementById('input-whatsapp')) document.getElementById('input-whatsapp').value = localStorage.getItem('prompts_whatsapp') || '';
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+function closeModal() {
+  const modal = document.getElementById('modal-overlay');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
 
-      function getShareUrl() {
-        return `${window.location.origin}${window.location.pathname}?ref=${refCode}`;
+document.addEventListener('DOMContentLoaded', () => {
+  updateUI();
+  renderPrompts();
+
+  const handleShareStep1 = () => {
+    copyToClipboard(getShareUrl());
+    step1Done = true;
+    localStorage.setItem('prompts_step1', 'true');
+    updateUI();
+    showToast('🔗 Link copiado! Etapa 1 registada.');
+  };
+  const handleShareStep2 = () => {
+    copyToClipboard(getShareUrl());
+    step1Done = true; step2Done = true;
+    localStorage.setItem('prompts_step1', 'true');
+    localStorage.setItem('prompts_step2', 'true');
+    updateUI();
+    showToast('🔗 Link copiado para o 2º amigo!');
+  };
+  const handleCopyLink = () => {
+    copyToClipboard(getShareUrl());
+    if (!step1Done) { step1Done = true; localStorage.setItem('prompts_step1', 'true'); }
+    else if (!step2Done) { step2Done = true; localStorage.setItem('prompts_step2', 'true'); }
+    updateUI();
+    showToast('🔗 Link copiado!');
+  };
+
+  const btnStep1 = document.getElementById('btn-step-1');
+  const btnStep2 = document.getElementById('btn-step-2');
+  const btnCopyMain = document.getElementById('btn-copy-main');
+  const btnFloating = document.getElementById('btn-floating-share');
+  const btnShareGeneric = document.getElementById('btn-share-generic');
+  if (btnStep1) btnStep1.addEventListener('click', handleShareStep1);
+  if (btnStep2) btnStep2.addEventListener('click', handleShareStep2);
+  if (btnCopyMain) btnCopyMain.addEventListener('click', handleCopyLink);
+  if (btnShareGeneric) btnShareGeneric.addEventListener('click', handleCopyLink);
+  if (btnFloating) btnFloating.addEventListener('click', () => {
+    if (!step1Done) handleShareStep1();
+    else if (!step2Done) handleShareStep2();
+    else if (!step3Done) openModal();
+    else showToast('🎉 Parabéns! Saque R$ 2,00 em processamento.');
+  });
+
+  const btnOpenMissions = document.getElementById('btn-open-missions');
+  if (btnOpenMissions) btnOpenMissions.addEventListener('click', () => {
+    const el = document.getElementById('painel-missoes');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+  const btnOpenPixTop = document.getElementById('btn-open-pix-top');
+  if (btnOpenPixTop) btnOpenPixTop.addEventListener('click', openModal);
+
+  const btnWhatsapp = document.getElementById('btn-whatsapp');
+  if (btnWhatsapp) btnWhatsapp.addEventListener('click', () => {
+    handleCopyLink();
+    window.open(`https://wa.me/?text=${encodeURIComponent('🔥 500 Prompts de IA por R$ 5,00: ' + getShareUrl())}`, '_blank');
+  });
+  const btnTelegram = document.getElementById('btn-telegram');
+  if (btnTelegram) btnTelegram.addEventListener('click', () => {
+    handleCopyLink();
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent('🔥 500 Prompts de IA por R$ 5,00')}`, '_blank');
+  });
+
+  const btnWithdraw = document.getElementById('btn-withdraw');
+  if (btnWithdraw) btnWithdraw.addEventListener('click', () => {
+    if (step1Done && step2Done && step3Done) {
+      showToast(`✅ Solicitação de R$ 2,00 enviada!`);
+    } else {
+      showToast('⚠️ Conclua as 3 etapas para liberar o saque.');
+      openModal();
+    }
+  });
+
+  const btnUnlock = document.getElementById('btn-unlock-bonus');
+  const btnInsertPix = document.getElementById('btn-insert-pix');
+  const btnClose = document.getElementById('btn-close-modal');
+  const modalOverlay = document.getElementById('modal-overlay');
+  if (btnUnlock) btnUnlock.addEventListener('click', openModal);
+  if (btnInsertPix) btnInsertPix.addEventListener('click', openModal);
+  if (btnClose) btnClose.addEventListener('click', closeModal);
+  if (modalOverlay) modalOverlay.addEventListener('click', (e) => {
+    if (e.target.id === 'modal-overlay') closeModal();
+  });
+
+  const btnSaveModal = document.getElementById('btn-save-modal');
+  if (btnSaveModal) {
+    btnSaveModal.addEventListener('click', async () => {
+      const emailVal = document.getElementById('input-bonus-email').value.trim();
+      const pixVal = document.getElementById('input-pix-key').value.trim();
+      const whatsVal = document.getElementById('input-whatsapp').value.trim();
+
+      if (!emailVal || !pixVal) {
+        showToast('⚠️ Preencha e-mail e chave Pix!');
+        return;
       }
 
-      function showToast(msg) {
-        const toast = document.getElementById('toast-container');
-        if (!toast) return;
-        toast.textContent = msg;
-        toast.classList.remove('hidden');
-        clearTimeout(window.__t);
-        window.__t = setTimeout(() => toast.classList.add('hidden'), 3500);
-      }
+      const whatsLimpo = whatsVal.replace(/\D/g, '');
+      const whatsFinal = (whatsLimpo.length >= 10 && whatsLimpo.length <= 11) ? '55' + whatsLimpo : whatsLimpo;
 
-      function copyToClipboard(text) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
-        } else { fallbackCopy(text); }
-      }
-      function fallbackCopy(text) {
-        const ta = document.createElement('textarea');
-        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-        document.body.appendChild(ta); ta.select();
-        try { document.execCommand('copy'); } catch (e) {}
-        document.body.removeChild(ta);
-      }
+      localStorage.setItem('prompts_bonus_email', emailVal);
+      localStorage.setItem('prompts_pix_key', pixVal);
+      localStorage.setItem('prompts_whatsapp', whatsFinal);
+      step3Done = true;
+      localStorage.setItem('prompts_step3', 'true');
+      updateUI();
+      closeModal();
+      showToast('⏳ A processar...');
 
-      function openModal() {
-        const modal = document.getElementById('modal-overlay');
-        if (!modal) return;
-        if (document.getElementById('input-bonus-email')) document.getElementById('input-bonus-email').value = localStorage.getItem('prompts_bonus_email') || '';
-        if (document.getElementById('input-pix-key')) document.getElementById('input-pix-key').value = localStorage.getItem('prompts_pix_key') || '';
-        if (document.getElementById('input-whatsapp')) document.getElementById('input-whatsapp').value = localStorage.getItem('prompts_whatsapp') || '';
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-      function closeModal() {
-        const modal = document.getElementById('modal-overlay');
-        if (!modal) return;
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const input = document.getElementById('ref-link-input');
-        if (input) input.value = getShareUrl();
-
-        const handleShare = () => {
-          const url = getShareUrl();
-          copyToClipboard(url);
-          showToast('🔗 Link copiado com sucesso!');
-        };
-
-        const btnStep1 = document.getElementById('btn-step-1');
-        const btnStep2 = document.getElementById('btn-step-2');
-        const btnCopyMain = document.getElementById('btn-copy-main');
-        const btnFloating = document.getElementById('btn-floating-share');
-        if (btnStep1) btnStep1.addEventListener('click', handleShare);
-        if (btnStep2) btnStep2.addEventListener('click', handleShare);
-        if (btnCopyMain) btnCopyMain.addEventListener('click', handleShare);
-        if (btnFloating) btnFloating.addEventListener('click', handleShare);
-
-        const btnWhatsapp = document.getElementById('btn-whatsapp');
-        if (btnWhatsapp) btnWhatsapp.addEventListener('click', () => {
-          window.open(`https://wa.me/?text=${encodeURIComponent('🔥 500 Prompts de IA por R$ 5,00: ' + getShareUrl())}`, '_blank');
+      try {
+        const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/cashback", {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            cliente_email: emailVal,
+            cliente_nome: localStorage.getItem('prompts_nome') || 'Cliente',
+            chave_pix: pixVal,
+            whatsapp: whatsFinal,
+            ref_code: refCode,
+            origem: 'APP_500_PROMPTS'
+          })
         });
-        const btnTelegram = document.getElementById('btn-telegram');
-        if (btnTelegram) btnTelegram.addEventListener('click', () => {
-          window.open(`https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent('🔥 500 Prompts de IA por R$ 5,00')}`, '_blank');
-        });
-
-        const btnUnlock = document.getElementById('btn-unlock-bonus');
-        const btnInsertPix = document.getElementById('btn-insert-pix');
-        const btnOpenPixTop = document.getElementById('btn-open-pix-top');
-        const btnClose = document.getElementById('btn-close-modal');
-        const modalOverlay = document.getElementById('modal-overlay');
-        if (btnUnlock) btnUnlock.addEventListener('click', openModal);
-        if (btnInsertPix) btnInsertPix.addEventListener('click', openModal);
-        if (btnOpenPixTop) btnOpenPixTop.addEventListener('click', openModal);
-        if (btnClose) btnClose.addEventListener('click', closeModal);
-        if (modalOverlay) modalOverlay.addEventListener('click', (e) => {
-          if (e.target.id === 'modal-overlay') closeModal();
-        });
-
-        const btnSaveModal = document.getElementById('btn-save-modal');
-        if (btnSaveModal) {
-          btnSaveModal.addEventListener('click', async () => {
-            const emailVal = document.getElementById('input-bonus-email').value.trim();
-            const pixVal = document.getElementById('input-pix-key').value.trim();
-            const whatsVal = document.getElementById('input-whatsapp').value.trim();
-
-            if (!emailVal || !pixVal) {
-              showToast('⚠️ Preencha e-mail e chave Pix!');
-              return;
-            }
-
-            const whatsLimpo = whatsVal.replace(/\D/g, '');
-            const whatsFinal = (whatsLimpo.length >= 10 && whatsLimpo.length <= 11) ? '55' + whatsLimpo : whatsLimpo;
-
-            localStorage.setItem('prompts_bonus_email', emailVal);
-            localStorage.setItem('prompts_pix_key', pixVal);
-            localStorage.setItem('prompts_whatsapp', whatsFinal);
-            localStorage.setItem('prompts_step3', 'true');
-            closeModal();
-            showToast('⏳ A processar...');
-
-            try {
-              const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/cashback", {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  cliente_email: emailVal,
-                  cliente_nome: localStorage.getItem('prompts_nome') || 'Cliente',
-                  chave_pix: pixVal,
-                  whatsapp: whatsFinal,
-                  ref_code: refCode,
-                  origem: 'APP_500_PROMPTS'
-                })
-              });
-              const dados = await resposta.json();
-              if (resposta.ok && dados.status === 'sucesso') {
-                showToast('🎁 Bônus desbloqueado! Verifique WhatsApp e e-mail.');
-              } else if (dados.status === 'sem_pagamento') {
-                showToast('⚠️ Não encontrámos seu pagamento. Efetue o pagamento primeiro.');
-              } else {
-                showToast('⚠️ Erro ao processar. Tente novamente.');
-              }
-            } catch (erro) {
-              console.error('Erro:', erro);
-              showToast('⚠️ Erro de conexão. Tente novamente.');
-            }
-          });
+        const dados = await resposta.json();
+        if (resposta.ok && dados.status === 'sucesso') {
+          showToast('🎁 Bônus desbloqueado! Verifique WhatsApp e e-mail.');
+        } else if (dados.status === 'sem_pagamento') {
+          showToast('⚠️ Não encontrámos seu pagamento. Efetue o pagamento primeiro.');
+        } else {
+          showToast('⚠️ Erro ao processar. Tente novamente.');
         }
+      } catch (erro) {
+        console.error('Erro:', erro);
+        showToast('⚠️ Erro de conexão. Tente novamente.');
+      }
+    });
+  }
+
+  // Filtros e busca dos prompts
+  const categoryFilters = document.getElementById('category-filters');
+  if (categoryFilters) {
+    categoryFilters.addEventListener('click', (e) => {
+      const btn = e.target.closest('.cat-btn');
+      if (!btn) return;
+      currentCategory = btn.getAttribute('data-cat');
+      visibleCount = 12;
+      document.querySelectorAll('.cat-btn').forEach((b) => {
+        b.className = 'cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#050806] text-emerald-300 border border-emerald-900/60';
       });
-    </script>
-  </body>
+      btn.className = 'cat-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950';
+      renderPrompts();
+    });
+  }
+
+  const promptSearch = document.getElementById('prompt-search');
+  if (promptSearch) promptSearch.addEventListener('input', (e) => {
+    currentSearch = e.target.value;
+    visibleCount = 12;
+    renderPrompts();
+  });
+
+  const loadMoreBtn = document.getElementById('btn-load-more-prompts');
+  if (loadMoreBtn) loadMoreBtn.addEventListener('click', () => {
+    visibleCount += 24;
+    renderPrompts();
+  });
+
+  const promptsGrid = document.getElementById('prompts-grid');
+  if (promptsGrid) promptsGrid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-copy-prompt');
+    if (!btn) return;
+    const id = Number(btn.getAttribute('data-prompt-id'));
+    const found = all500Prompts.find((p) => p.id === id);
+    if (found) {
+      copyToClipboard(found.prompt);
+      showToast(`📋 Prompt ${found.code} copiado!`);
+    }
+  });
+});
+</script>
+</body>
 </html>
