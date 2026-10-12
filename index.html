@@ -1,3 +1,8 @@
+✅ CÓDIGO COMPLETO CORRIGIDO!
+
+Aqui está o código do app completo, com a URL do webhook atualizada para o Workflow 6 (Cashback v3):
+
+```html
 <!doctype html>
 <html lang="pt-PT">
 <head>
@@ -84,7 +89,6 @@ h1,h2,h3,.font-syne { font-family: 'Syne', sans-serif; }
 </div>
 </section>
 
-<!-- SECÇÃO DOS 500 PROMPTS (RESTAURADA) -->
 <section id="acervo-prompts" class="rounded-2xl border border-emerald-900/70 bg-[#09100a] p-6 space-y-6">
 <div class="flex items-center gap-3">
 <div class="h-10 w-10 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-syne text-lg">📚</div>
@@ -459,8 +463,9 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModal();
       showToast('⏳ A processar...');
 
+      // ✅ WORKFLOW 6 - CASHBACK V3 (URL CORRIGIDA)
       try {
-        const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/cashback", {
+        const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/pedir_cashback_v3", {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -473,10 +478,20 @@ document.addEventListener('DOMContentLoaded', () => {
           })
         });
         const dados = await resposta.json();
+
+        // ✅ MENSAGENS ATUALIZADAS CONFORME WORKFLOW 6
         if (resposta.ok && dados.status === 'sucesso') {
-          showToast('🎁 Bônus desbloqueado! Verifique WhatsApp e e-mail.');
-        } else if (dados.status === 'sem_pagamento') {
-          showToast('⚠️ Não encontrámos seu pagamento. Efetue o pagamento primeiro.');
+          showToast('🎉 Cashback solicitado! Você receberá R$ 2,00 em até 48h.');
+        } else if (dados.status === 'pendente') {
+          showToast('⏳ Seu pedido de cashback está em análise.');
+        } else if (dados.status === 'pago') {
+          showToast('✅ Você já recebeu o cashback de R$ 2,00.');
+        } else if (dados.status === 'sem_compra') {
+          showToast('🛒 Você precisa comprar o acesso primeiro para resgatar cashback.');
+        } else if (dados.status === 'expirado') {
+          showToast('🔴 Seu pedido expirou. Faça novas missões.');
+        } else if (dados.status === 'bloqueado') {
+          showToast('🚫 Conta bloqueada. Contate o suporte.');
         } else {
           showToast('⚠️ Erro ao processar. Tente novamente.');
         }
@@ -531,3 +546,84 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+```
+
+---
+
+🔧 O QUE MUDOU (resumo das alterações):
+
+1️⃣ URL do Webhook (linha mais importante)
+
+Antes:
+
+```javascript
+const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/cashback", {
+```
+
+Agora:
+
+```javascript
+const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/pedir_cashback_v3", {
+```
+
+2️⃣ Tratamento de todos os status do Workflow 6
+
+Agora o app trata todos os 6 status que o Workflow 6 pode retornar:
+
+· ✅ sucesso → "🎉 Cashback solicitado!"
+· ⏳ pendente → "⏳ Em análise"
+· ✅ pago → "✅ Já recebeu"
+· 🛒 sem_compra → "🛒 Compre o acesso primeiro"
+· 🔴 expirado → "🔴 Pedido expirou"
+· 🚫 bloqueado → "🚫 Conta bloqueada"
+
+---
+
+🎯 PRÓXIMOS PASSOS:
+
+1️⃣ Copia o código acima
+
+2️⃣ Cola no arquivo do seu app (substitui o antigo)
+
+3️⃣ Sobe pro Vercel
+
+· Salva o arquivo
+· Faz o deploy (git push ou upload)
+
+4️⃣ Testa no site real:
+
+1. Abre o app
+2. Completa as 3 missões (Etapa 1, 2, 3)
+3. Preenche o formulário do Bônus Secreto
+4. Clica em "Confirmar e Salvar Dados"
+5. Deve aparecer: "🎉 Cashback solicitado!" (se tiver comprado)
+
+---
+
+🧪 TESTES QUE VOCÊ PODE FAZER:
+
+Teste 1: Cliente que JÁ comprou
+
+· Usa o email cliente_teste_pago@gmail.com
+· Preenche a chave PIX
+· Espera: "🎉 Cashback solicitado!"
+
+Teste 2: Cliente que NÃO comprou
+
+· Usa qualquer email que não está na tabela pagamentos com status pago
+· Espera: "🛒 Você precisa comprar o acesso primeiro"
+
+Teste 3: Duplicidade
+
+· Usa o mesmo email 2x
+· Espera na 2ª vez: "⏳ Seu pedido de cashback está em análise"
+
+---
+
+📸 Me manda:
+
+Print do app funcionando depois de subir pro Vercel! 🔮
+
+---
+
+Copia o código, sobe pro Vercel e testa! Me manda o print do resultado! 🚀
