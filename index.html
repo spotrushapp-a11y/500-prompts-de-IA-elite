@@ -11,7 +11,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="500 Prompts Profissionais de IA por R$ 5,00">
-<meta property="og:url" content="https://share.google/OPU1oqAOzw0s5oB7W">
+<!-- ALTERADO: Link da página de vendas -->
+<meta property="og:url" content="https://share.google/o2y405UFdosNOMi8i">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🔥 500 Prompts Profissionais de IA por R$ 5,00">
@@ -227,7 +228,8 @@ let step1Done = localStorage.getItem('prompts_step1') === 'true';
 let step2Done = localStorage.getItem('prompts_step2') === 'true';
 let step3Done = localStorage.getItem('prompts_step3') === 'true';
 
-function getShareUrl() { return `${window.location.origin}${window.location.pathname}?ref=${refCode}&v=3`; }
+// ALTERADO: Função que gera o link de compartilhamento. Agora aponta para a página de vendas em vez do app.
+function getShareUrl() { return `https://share.google/o2y405UFdosNOMi8i?ref=${refCode}`; }
 
 function showToast(msg) {
   const t = document.getElementById('toast-container');
