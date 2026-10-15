@@ -7,17 +7,19 @@
 <title>500 Prompts IA — Acesso Elite</title>
 <meta property="og:title" content="🔥 500 Prompts Profissionais de IA por R$ 5,00">
 <meta property="og:description" content="Domine as melhores IAs. Ganhe R$ 2,00 de cashback no Pix ao completar as missões!">
-<meta property="og:image" content="https://share.google/o2y405UFdosNOMi8i/banner.jpg">
+<!-- ALTERADO: Link direto da imagem no GitHub (RAW) -->
+<meta property="og:image" content="https://raw.githubusercontent.com/spotrushapp-a11y/500-prompts-de-IA-elite/main/banner.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="500 Prompts Profissionais de IA por R$ 5,00">
-<!-- ALTERADO: Link da página de vendas -->
-<meta property="og:url" content="https://share.google/o2y405UFdosNOMi8i">
+<!-- ALTERADO: URL da página de vendas (Vercel) -->
+<meta property="og:url" content="https://500-prompts-de-ia-elite.vercel.app">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🔥 500 Prompts Profissionais de IA por R$ 5,00">
 <meta name="twitter:description" content="Domine as melhores IAs. Ganhe R$ 2,00 de cashback no Pix!">
-<meta name="twitter:image" content="https://share.google/o2y405UFdosNOMi8i/banner.jpg">
+<!-- ALTERADO: Link direto da imagem no GitHub (RAW) -->
+<meta name="twitter:image" content="https://raw.githubusercontent.com/spotrushapp-a11y/500-prompts-de-IA-elite/main/banner.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -228,8 +230,8 @@ let step1Done = localStorage.getItem('prompts_step1') === 'true';
 let step2Done = localStorage.getItem('prompts_step2') === 'true';
 let step3Done = localStorage.getItem('prompts_step3') === 'true';
 
-// ALTERADO: Função que gera o link de compartilhamento. Agora aponta para a página de vendas em vez do app.
-function getShareUrl() { return `https://share.google/o2y405UFdosNOMi8i?ref=${refCode}`; }
+// ALTERADO: Função que gera o link de compartilhamento.
+function getShareUrl() { return `https://500-prompts-de-ia-elite.vercel.app/?ref=${refCode}`; }
 
 function showToast(msg) {
   const t = document.getElementById('toast-container');
@@ -456,7 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('⏳ Verificando suas missões...');
 
     try {
-      // URL DE PRODUÇÃO DO N8N INSERIDA AQUI
       const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/validar_saque_cashback", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
