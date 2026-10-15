@@ -7,13 +7,13 @@
 <title>500 Prompts IA — Acesso Elite</title>
 <meta property="og:title" content="🔥 500 Prompts Profissionais de IA por R$ 5,00">
 <meta property="og:description" content="Domine as melhores IAs. Ganhe R$ 2,00 de cashback no Pix ao completar as missões!">
-<!-- ALTERADO: Usando proxy para o WhatsApp não bloquear a imagem do GitHub -->
+<!-- MANTIDO: Proxy para a imagem funcionar -->
 <meta property="og:image" content="https://wsrv.nl/?url=raw.githubusercontent.com/spotrushapp-a11y/500-prompts-de-IA-elite/main/banner.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="500 Prompts Profissionais de IA por R$ 5,00">
-<!-- ALTERADO: Link direto da Vercel (Essencial para o ?ref= e para a imagem) -->
-<meta property="og:url" content="https://500-prompts-de-ia-elite.vercel.app">
+<!-- ALTERADO: Link da página de vendas (encurtador) -->
+<meta property="og:url" content="https://share.google/0Buy2vN8NJECXO7SA">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🔥 500 Prompts Profissionais de IA por R$ 5,00">
@@ -215,7 +215,7 @@ Programa de cashback válido após conclusão das 3 missões e compra do acesso.
 </div>
 
 <script>
-// 1. Lógica de Referral: Lê o parâmetro ?ref= da URL
+// 1. Lógica de Referral
 const urlParams = new URLSearchParams(window.location.search);
 const refFromUrl = urlParams.get('ref');
 if (refFromUrl) {
@@ -229,8 +229,8 @@ let step1Done = localStorage.getItem('prompts_step1') === 'true';
 let step2Done = localStorage.getItem('prompts_step2') === 'true';
 let step3Done = localStorage.getItem('prompts_step3') === 'true';
 
-// ALTERADO: Função que gera o link de compartilhamento usando o link direto da Vercel.
-function getShareUrl() { return `https://500-prompts-de-ia-elite.vercel.app/?ref=${refCode}`; }
+// ALTERADO: Função que gera o link de compartilhamento usando o link do share.google fornecido.
+function getShareUrl() { return `https://share.google/0Buy2vN8NJECXO7SA?ref=${refCode}`; }
 
 function showToast(msg) {
   const t = document.getElementById('toast-container');
