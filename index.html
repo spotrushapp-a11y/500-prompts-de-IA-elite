@@ -12,13 +12,12 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="500 Prompts Profissionais de IA por R$ 5,00">
-<!-- ALTERADO: URL da página de vendas (Vercel) -->
-<meta property="og:url" content="https://500-prompts-de-ia-elite.vercel.app">
+<!-- ALTERADO: Link da página de vendas que você me passou -->
+<meta property="og:url" content="https://share.google/AsNNyOKm5alFt5Mxe">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🔥 500 Prompts Profissionais de IA por R$ 5,00">
 <meta name="twitter:description" content="Domine as melhores IAs. Ganhe R$ 2,00 de cashback no Pix!">
-<!-- ALTERADO: Link direto da imagem no GitHub (RAW) -->
 <meta name="twitter:image" content="https://raw.githubusercontent.com/spotrushapp-a11y/500-prompts-de-IA-elite/main/banner.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -230,8 +229,8 @@ let step1Done = localStorage.getItem('prompts_step1') === 'true';
 let step2Done = localStorage.getItem('prompts_step2') === 'true';
 let step3Done = localStorage.getItem('prompts_step3') === 'true';
 
-// ALTERADO: Função que gera o link de compartilhamento.
-function getShareUrl() { return `https://500-prompts-de-ia-elite.vercel.app/?ref=${refCode}`; }
+// ALTERADO: Função que gera o link de compartilhamento usando o link da página de vendas.
+function getShareUrl() { return `https://share.google/AsNNyOKm5alFt5Mxe?ref=${refCode}`; }
 
 function showToast(msg) {
   const t = document.getElementById('toast-container');
@@ -395,7 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateUI();
   renderPrompts();
 
-  // LÓGICA NOVA: Apenas copia o link, não valida a missão
   const handleShareStep1 = () => {
     copyToClipboard(getShareUrl());
     showToast('🔗 Link copiado! Envie para seu amigo. A missão será validada quando ele se cadastrar.');
@@ -443,7 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(`https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent('🔥 500 Prompts de IA por R$ 5,00')}`, '_blank');
   });
 
-  // TRAVA DE SEGURANÇA: O botão de saque pergunta ao N8N se o cliente pode sacar
   const btnWithdraw = document.getElementById('btn-withdraw');
   if (btnWithdraw) btnWithdraw.addEventListener('click', async () => {
     const email = localStorage.getItem('prompts_bonus_email');
