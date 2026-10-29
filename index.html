@@ -43,7 +43,7 @@ h1,h2,h3,.font-syne { font-family: 'Syne', sans-serif; }
 
 <main class="flex-1 mx-auto max-w-4xl w-full px-4 py-8 space-y-10">
 
-<!-- BOTÃO DE COMPRA PRINCIPAL (ATUALIZADO) -->
+<!-- BOTÃO DE COMPRA PRINCIPAL -->
 <section class="text-center pb-6">
     <button onclick="goToCheckout()" class="w-full py-5 px-6 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-extrabold text-lg shadow-[0_0_40px_rgba(251,191,36,0.3)] hover:scale-105 transition-transform">
         👉 SIM! QUERO ACESSO VITALÍCIO AOS 500 PROMPTS
@@ -222,18 +222,26 @@ Programa de cashback válido após conclusão das 3 missões e compra do acesso.
 
 <script>
 // =====================================================================
-// 🔴 LINK DE CHECKOUT DA INFINITEPAY (COLE O SEU LINK AQUI)
+// 🔴 LINK DE CHECKOUT DA INFINITEPAY (COLE O SEU LINK AQUI DENTRO DAS ASPAS) 🔴
 // =====================================================================
 const INFINITEPAY_CHECKOUT_URL = 'https://checkout.infinitepay.io/SEU_LINK_AQUI'; 
 
 function goToCheckout() {
-    // 1. Salva a origem (se veio de um link de indicação)
     const urlParams = new URLSearchParams(window.location.search);
     const ref = urlParams.get('ref');
     if (ref) localStorage.setItem('prompts_ref_code', ref);
-    
-    // 2. Redireciona para o pagamento
     window.location.href = INFINITEPAY_CHECKOUT_URL;
+}
+
+function handleFloatingBtn() {
+    if (!step1Done || !step2Done) {
+        copyToClipboard(getShareUrl());
+        showToast('🔗 Link copiado! A missão será validada quando seu amigo comprar.');
+    } else if (!step3Done) {
+        openModal();
+    } else {
+        showToast('🎉 Parabéns! Clique em Sacar R$ 2,00 para validar.');
+    }
 }
 
 // 1. Lógica de Referral
@@ -376,4 +384,5 @@ function renderPrompts() {
     <div class="p-3.5 rounded-xl border border-emerald-900/60 bg-[#050806] flex flex-col gap-2.5">
       <div>
         <div class="flex items-center justify-between gap-2 mb-1.5">
-          <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald
+          <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono-code text-[10px] font-bold">${item.code}</span>
+          <span class
