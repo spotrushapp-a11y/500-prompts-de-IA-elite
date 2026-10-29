@@ -7,12 +7,10 @@
 <title>500 Prompts IA — Acesso Elite</title>
 <meta property="og:title" content="🔥 500 Prompts Profissionais de IA por R$ 5,00">
 <meta property="og:description" content="Domine as melhores IAs. Ganhe R$ 2,00 de cashback no Pix ao completar as missões!">
-<!-- MANTIDO: Proxy para a imagem funcionar -->
 <meta property="og:image" content="https://wsrv.nl/?url=raw.githubusercontent.com/spotrushapp-a11y/500-prompts-de-IA-elite/main/banner.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="500 Prompts Profissionais de IA por R$ 5,00">
-<!-- ALTERADO: Link da página de vendas (encurtador) -->
 <meta property="og:url" content="https://share.google/0Buy2vN8NJECXO7SA">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -44,6 +42,14 @@ h1,h2,h3,.font-syne { font-family: 'Syne', sans-serif; }
 </header>
 
 <main class="flex-1 mx-auto max-w-4xl w-full px-4 py-8 space-y-10">
+
+<!-- BOTÃO DE COMPRA PRINCIPAL (ATUALIZADO) -->
+<section class="text-center pb-6">
+    <button onclick="goToCheckout()" class="w-full py-5 px-6 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-extrabold text-lg shadow-[0_0_40px_rgba(251,191,36,0.3)] hover:scale-105 transition-transform">
+        👉 SIM! QUERO ACESSO VITALÍCIO AOS 500 PROMPTS
+    </button>
+    <p class="text-xs text-emerald-300/60 mt-3">Apenas R$ 5,00 • Acesso Imediato • Garantia de 7 dias</p>
+</section>
 
 <section class="space-y-6">
 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">✨ JORNADA REAL DE MISSÕES & BÔNUS SECRETO</div>
@@ -181,7 +187,7 @@ Programa de cashback válido após conclusão das 3 missões e compra do acesso.
 </main>
 
 <div class="fixed bottom-0 left-0 right-0 z-40 p-3 bg-[#050806]/95 border-t border-emerald-900/80">
-<button id="btn-floating-share" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-400 to-emerald-300 text-slate-950 font-extrabold text-xs">
+<button id="btn-floating-share" onclick="handleFloatingBtn()" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-400 to-emerald-300 text-slate-950 font-extrabold text-xs">
 <span id="floating-btn-label">🔗 CLIQUE AQUI PARA COMPARTILHAR (Etapa 1)</span>
 </button>
 </div>
@@ -215,12 +221,25 @@ Programa de cashback válido após conclusão das 3 missões e compra do acesso.
 </div>
 
 <script>
+// =====================================================================
+// 🔴 LINK DE CHECKOUT DA INFINITEPAY (COLE O SEU LINK AQUI)
+// =====================================================================
+const INFINITEPAY_CHECKOUT_URL = 'https://checkout.infinitepay.io/SEU_LINK_AQUI'; 
+
+function goToCheckout() {
+    // 1. Salva a origem (se veio de um link de indicação)
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    if (ref) localStorage.setItem('prompts_ref_code', ref);
+    
+    // 2. Redireciona para o pagamento
+    window.location.href = INFINITEPAY_CHECKOUT_URL;
+}
+
 // 1. Lógica de Referral
 const urlParams = new URLSearchParams(window.location.search);
 const refFromUrl = urlParams.get('ref');
-if (refFromUrl) {
-  localStorage.setItem('prompts_ref_code', refFromUrl);
-}
+if (refFromUrl) localStorage.setItem('prompts_ref_code', refFromUrl);
 let refCode = localStorage.getItem('prompts_ref_code') || ('REF_' + Math.random().toString(36).slice(2, 8).toUpperCase());
 localStorage.setItem('prompts_ref_code', refCode);
 
@@ -229,7 +248,6 @@ let step1Done = localStorage.getItem('prompts_step1') === 'true';
 let step2Done = localStorage.getItem('prompts_step2') === 'true';
 let step3Done = localStorage.getItem('prompts_step3') === 'true';
 
-// ALTERADO: Função que gera o link de compartilhamento usando o link do share.google fornecido.
 function getShareUrl() { return `https://share.google/0Buy2vN8NJECXO7SA?ref=${refCode}`; }
 
 function showToast(msg) {
@@ -358,238 +376,4 @@ function renderPrompts() {
     <div class="p-3.5 rounded-xl border border-emerald-900/60 bg-[#050806] flex flex-col gap-2.5">
       <div>
         <div class="flex items-center justify-between gap-2 mb-1.5">
-          <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono-code text-[10px] font-bold">${item.code}</span>
-          <span class="text-[10px] text-emerald-300/60 font-semibold">${item.category}</span>
-        </div>
-        <h4 class="font-syne text-xs font-bold text-white mb-1">${item.title}</h4>
-        <p class="text-[11px] text-emerald-100/70 font-mono-code leading-relaxed bg-[#09120b] p-2.5 rounded-lg border border-emerald-950">${item.prompt}</p>
-      </div>
-      <button data-prompt-id="${item.id}" class="btn-copy-prompt w-full py-1.5 px-3 rounded-lg border border-emerald-800/70 bg-emerald-950/40 text-emerald-300 text-[11px] font-bold">📋 Copiar ${item.code}</button>
-    </div>
-  `).join('');
-  if (showingText) showingText.textContent = `Exibindo ${slice.length} de ${filtered.length} prompts`;
-  if (loadMoreBtn) {
-    if (slice.length >= filtered.length) loadMoreBtn.classList.add('hidden');
-    else loadMoreBtn.classList.remove('hidden');
-  }
-}
-
-function openModal() {
-  const modal = document.getElementById('modal-overlay');
-  if (!modal) return;
-  if (document.getElementById('input-bonus-email')) document.getElementById('input-bonus-email').value = localStorage.getItem('prompts_bonus_email') || '';
-  if (document.getElementById('input-pix-key')) document.getElementById('input-pix-key').value = localStorage.getItem('prompts_pix_key') || '';
-  if (document.getElementById('input-whatsapp')) document.getElementById('input-whatsapp').value = localStorage.getItem('prompts_whatsapp') || '';
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-}
-function closeModal() {
-  const modal = document.getElementById('modal-overlay');
-  if (!modal) return;
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  updateUI();
-  renderPrompts();
-
-  const handleShareStep1 = () => {
-    copyToClipboard(getShareUrl());
-    showToast('🔗 Link copiado! Envie para seu amigo. A missão será validada quando ele se cadastrar.');
-  };
-  const handleShareStep2 = () => {
-    copyToClipboard(getShareUrl());
-    showToast('🔗 Link copiado! Envie para o 2º amigo. A missão será validada quando ele se cadastrar.');
-  };
-  const handleCopyLink = () => {
-    copyToClipboard(getShareUrl());
-    showToast('🔗 Link copiado! Envie para seus amigos.');
-  };
-
-  const btnStep1 = document.getElementById('btn-step-1');
-  const btnStep2 = document.getElementById('btn-step-2');
-  const btnCopyMain = document.getElementById('btn-copy-main');
-  const btnFloating = document.getElementById('btn-floating-share');
-  const btnShareGeneric = document.getElementById('btn-share-generic');
-  if (btnStep1) btnStep1.addEventListener('click', handleShareStep1);
-  if (btnStep2) btnStep2.addEventListener('click', handleShareStep2);
-  if (btnCopyMain) btnCopyMain.addEventListener('click', handleCopyLink);
-  if (btnShareGeneric) btnShareGeneric.addEventListener('click', handleCopyLink);
-  if (btnFloating) btnFloating.addEventListener('click', () => {
-    if (!step1Done || !step2Done) handleShareStep1();
-    else if (!step3Done) openModal();
-    else showToast('🎉 Parabéns! Clique em Sacar R$ 2,00 para validar.');
-  });
-
-  const btnOpenMissions = document.getElementById('btn-open-missions');
-  if (btnOpenMissions) btnOpenMissions.addEventListener('click', () => {
-    const el = document.getElementById('painel-missoes');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  });
-  const btnOpenPixTop = document.getElementById('btn-open-pix-top');
-  if (btnOpenPixTop) btnOpenPixTop.addEventListener('click', openModal);
-
-  const btnWhatsapp = document.getElementById('btn-whatsapp');
-  if (btnWhatsapp) btnWhatsapp.addEventListener('click', () => {
-    handleCopyLink();
-    window.open(`https://wa.me/?text=${encodeURIComponent('🔥 500 Prompts de IA por R$ 5,00: ' + getShareUrl())}`, '_blank');
-  });
-  const btnTelegram = document.getElementById('btn-telegram');
-  if (btnTelegram) btnTelegram.addEventListener('click', () => {
-    handleCopyLink();
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent('🔥 500 Prompts de IA por R$ 5,00')}`, '_blank');
-  });
-
-  const btnWithdraw = document.getElementById('btn-withdraw');
-  if (btnWithdraw) btnWithdraw.addEventListener('click', async () => {
-    const email = localStorage.getItem('prompts_bonus_email');
-    const refCode = localStorage.getItem('prompts_ref_code');
-
-    if (!email || !refCode) {
-      showToast('⚠️ Preencha seus dados primeiro (Etapa 3).');
-      openModal();
-      return;
-    }
-
-    showToast('⏳ Verificando suas missões...');
-
-    try {
-      const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/validar_saque_cashback", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          cliente_email: email,
-          ref_code: refCode
-        })
-      });
-      const dados = await resposta.json();
-
-      if (dados.status === 'liberado') {
-        showToast('✅ Missões validadas! Solicitação de R$ 2,00 enviada.');
-      } else if (dados.status === 'bloqueado') {
-        showToast('🚫 Missões incompletas. Convide amigos reais para validar.');
-      } else {
-        showToast('⚠️ Erro ao verificar. Tente novamente.');
-      }
-    } catch (erro) {
-      console.error(erro);
-      showToast('⚠️ Erro de conexão. Tente novamente.');
-    }
-  });
-
-  const btnUnlock = document.getElementById('btn-unlock-bonus');
-  const btnInsertPix = document.getElementById('btn-insert-pix');
-  const btnClose = document.getElementById('btn-close-modal');
-  const modalOverlay = document.getElementById('modal-overlay');
-  if (btnUnlock) btnUnlock.addEventListener('click', openModal);
-  if (btnInsertPix) btnInsertPix.addEventListener('click', openModal);
-  if (btnClose) btnClose.addEventListener('click', closeModal);
-  if (modalOverlay) modalOverlay.addEventListener('click', (e) => {
-    if (e.target.id === 'modal-overlay') closeModal();
-  });
-
-  const btnSaveModal = document.getElementById('btn-save-modal');
-  if (btnSaveModal) {
-    btnSaveModal.addEventListener('click', async () => {
-      const emailVal = document.getElementById('input-bonus-email').value.trim();
-      const pixVal = document.getElementById('input-pix-key').value.trim();
-      const whatsVal = document.getElementById('input-whatsapp').value.trim();
-
-      if (!emailVal || !pixVal) {
-        showToast('⚠️ Preencha e-mail e chave Pix!');
-        return;
-      }
-
-      const whatsLimpo = whatsVal.replace(/\D/g, '');
-      const whatsFinal = (whatsLimpo.length >= 10 && whatsLimpo.length <= 11) ? '55' + whatsLimpo : whatsLimpo;
-
-      localStorage.setItem('prompts_bonus_email', emailVal);
-      localStorage.setItem('prompts_pix_key', pixVal);
-      localStorage.setItem('prompts_whatsapp', whatsFinal);
-      step3Done = true;
-      localStorage.setItem('prompts_step3', 'true');
-      updateUI();
-      closeModal();
-      showToast('⏳ A processar...');
-
-      try {
-        const resposta = await fetch("https://luis3d.app.n8n.cloud/webhook/pedir_cashback_v3", {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            cliente_email: emailVal,
-            cliente_nome: localStorage.getItem('prompts_nome') || 'Cliente',
-            chave_pix: pixVal,
-            whatsapp: whatsFinal,
-            ref_code: refCode,
-            origem: 'APP_500_PROMPTS'
-          })
-        });
-        const dados = await resposta.json();
-
-        if (resposta.ok && dados.status === 'sucesso') {
-          showToast('🎉 Cashback solicitado! Você receberá R$ 2,00 em até 48h.');
-        } else if (dados.status === 'pendente') {
-          showToast('⏳ Seu pedido de cashback está em análise.');
-        } else if (dados.status === 'pago') {
-          showToast('✅ Você já recebeu o cashback de R$ 2,00.');
-        } else if (dados.status === 'sem_compra') {
-          showToast('🛒 Você precisa comprar o acesso primeiro para resgatar cashback.');
-        } else if (dados.status === 'expirado') {
-          showToast('🔴 Seu pedido expirou. Faça novas missões.');
-        } else if (dados.status === 'bloqueado') {
-          showToast('🚫 Conta bloqueada. Contate o suporte.');
-        } else {
-          showToast('⚠️ Erro ao processar. Tente novamente.');
-        }
-      } catch (erro) {
-        console.error('Erro:', erro);
-        showToast('⚠️ Erro de conexão. Tente novamente.');
-      }
-    });
-  }
-
-  const categoryFilters = document.getElementById('category-filters');
-  if (categoryFilters) {
-    categoryFilters.addEventListener('click', (e) => {
-      const btn = e.target.closest('.cat-btn');
-      if (!btn) return;
-      currentCategory = btn.getAttribute('data-cat');
-      visibleCount = 12;
-      document.querySelectorAll('.cat-btn').forEach((b) => {
-        b.className = 'cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#050806] text-emerald-300 border border-emerald-900/60';
-      });
-      btn.className = 'cat-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950';
-      renderPrompts();
-    });
-  }
-
-  const promptSearch = document.getElementById('prompt-search');
-  if (promptSearch) promptSearch.addEventListener('input', (e) => {
-    currentSearch = e.target.value;
-    visibleCount = 12;
-    renderPrompts();
-  });
-
-  const loadMoreBtn = document.getElementById('btn-load-more-prompts');
-  if (loadMoreBtn) loadMoreBtn.addEventListener('click', () => {
-    visibleCount += 24;
-    renderPrompts();
-  });
-
-  const promptsGrid = document.getElementById('prompts-grid');
-  if (promptsGrid) promptsGrid.addEventListener('click', (e) => {
-    const btn = e.target.closest('.btn-copy-prompt');
-    if (!btn) return;
-    const id = Number(btn.getAttribute('data-prompt-id'));
-    const found = all500Prompts.find((p) => p.id === id);
-    if (found) {
-      copyToClipboard(found.prompt);
-      showToast(`📋 Prompt ${found.code} copiado!`);
-    }
-  });
-});
-</script>
-</body>
-</html>
+          <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald
